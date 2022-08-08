@@ -1,0 +1,5 @@
+package com.duihua.chat.models;
+
+public class Message {
+
+}
