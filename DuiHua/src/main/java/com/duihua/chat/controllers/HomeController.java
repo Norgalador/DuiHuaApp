@@ -71,7 +71,7 @@ public class HomeController {
 		//	Register user
 //		userService.saveWithUserRole(user);
 		userService.saveUserWithAdminRole(user);
-		 return "redirect:/"; 
+		 return "redirect:/newProfile"; 
 	}
 	
 	//	Login Page
@@ -126,35 +126,6 @@ public class HomeController {
 		 session.invalidate();
 		 return "redirect:/";
 	 }
-	 
-//	// New Chat Room
-//		@GetMapping("/newChatRoom")
-//		public String newChatRoom(Principal principal, Model model,
-//				@ModelAttribute("chatRoom") ChatRoom chatRoom) {
-//			String username = principal.getName();
-//			model.addAttribute("currentUser", userService.findByUsername(username));
-//			return "newChatRoom.jsp";
-//			// Check if user is in session
-////					if(session.getAttribute("loggedInUser")!=null) {
-////						return "newProfile.jsp";
-////					}
-////					else {
-////						return "redirect:/";
-////					}
-//		}
-//		
-//		//	Create Chat Room
-//		@PostMapping("/createChatRoom")
-//		public String createChatRoom(@Valid @ModelAttribute("chatRoom") ChatRoom chatRoom,
-//				BindingResult result) {
-//			if(result.hasErrors()) {
-//				return "newChatRoom.jsp";
-//			}
-//			else {
-//				chatRoomService.createChatRoom(chatRoom);
-//				return "redirect:/";
-//			}
-//		}
 	
 //	
 //	@GetMapping(path = UserLinks.LIST_USERS)
