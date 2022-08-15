@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<title>Profile Page</title>
+</head>
+<body>
+<div class="card col-md-6 mx-auto">
+			<div class="card-header">
+				<h3 class="">${song.name}</h3>
+				<h5 class="">Posted By: ${song.user.name}</h5>
+			</div>
+			<div class="card-body">
+				<p class="card-text"><strong>Genre:</strong> ${song.genre}</p>
+				<p class="card-text"><strong>Original Lyrics:</strong></p> 
+				<p>${song.lyrics}</p>
+				<p class="card-text"><strong>Contributed Lyrics:</strong></p> 
+				<p>${song.contribution}</p>
+				<div class="btn-group">
+					 <%-- <c:if test="${song.user.id==userLoggedIn.id}"> --%>
+						<a class="btn btn-primary m-2" role="button"
+							href="/editSong/${song.id}">Contribute</a>
+					<%--  </c:if> --%>
+				</div>
+				<hr>
+				<p>
+						<c:if test="${song.collaborators.contains(userLoggedIn)}">
+							<p class="text-primary">You collaborated on this song.</p>
+						</c:if>
+				</p>
+				<div>
+				<h3>Collaborators</h3>
+				<p>
+				<c:forEach items="${song.collaborators}" var="collaborator">
+					<ul>
+						<li>${collaborator.name}</li>
+					</ul>
+				</c:forEach>
+				</p>
+				</div>
+				
+				<div class="m-2"></div>
+			</div>
+		</div>
+
+
+
+<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+</body>
+</html>

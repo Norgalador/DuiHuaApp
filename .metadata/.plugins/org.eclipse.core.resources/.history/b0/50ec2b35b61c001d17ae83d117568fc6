@@ -1,0 +1,55 @@
+package com.duihua.chat.controllers;
+
+import java.security.Principal;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.duihua.chat.models.ChatRoom;
+import com.duihua.chat.services.ChatRoomService;
+import com.duihua.chat.services.UserService;
+
+public class ChatRoomController {
+
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ChatRoomService chatRoomService;
+	
+	// New Chat Room
+	@GetMapping("/newChatRoom")
+	public String newChatRoom(Principal principal,
+			@ModelAttribute("chatRoom") ChatRoom chatRoom) {
+		return "newProfile.jsp";
+		// Check if user is in session
+//				if(session.getAttribute("loggedInUser")!=null) {
+//					return "newProfile.jsp";
+//				}
+//				else {
+//					return "redirect:/";
+//				}
+	}
+	
+	//	Create Chat Room
+	@PostMapping("/createChatRoom")
+	public String createChatRoom(@Valid @ModelAttribute("chatRoom") ChatRoom chatRoom,
+			BindingResult result) {
+		if(result.hasErrors()) {
+			return "newChatRoom.jsp";
+		}
+		else {
+			chatRoomService.createChatRoom(chatRoom);
+			return "redirect:/";
+		}
+	}
+	
+	// Get all Chat Rooms
+	
+	
+}

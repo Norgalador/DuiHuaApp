@@ -1,0 +1,132 @@
+package com.duihua.chat.controllers;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+import com.duihua.chat.models.Profile;
+import com.duihua.chat.models.User;
+import com.duihua.chat.services.ProfileService;
+import com.duihua.chat.services.UserService;
+
+@Controller
+public class ProfileController {
+
+    @Autowired
+    ProfileService profileService;
+
+    @Autowired
+    UserService userService;
+    
+	//	New Song
+	@GetMapping("/newProfile")
+	public String newProfile(HttpSession session,
+			@ModelAttribute("profile") Profile profile) {
+		
+		// Check if user is in session
+				if(session.getAttribute("loggedInUser")!=null) {
+					return "newProfile.jsp";
+				}
+				else {
+					return "redirect:/";
+				}
+	}
+	
+	//	Create Song
+//	@PostMapping("/createSong")
+//	public String createSong(@Valid @ModelAttribute("newSong") Song song,
+//			BindingResult result) {
+//		//	Validate that song name is unique and check for errors
+//		songService.validateSong(song, result);
+//		if(result.hasErrors()) {
+//			return "newSong.jsp";
+//		}
+//		else {
+//			songService.createSong(song);
+//			return "redirect:/dashboard";
+//		}
+//	}
+	
+	//	Get one Song details - allow edit/delete
+//	@GetMapping("/songDetails/{id}")
+//	public String songDetails(@PathVariable Long id,
+//			Model songModel,
+//			HttpSession session) {
+//		
+//		// Check if user is in session
+//		if(session.getAttribute("loggedInUser")!=null) {
+//			User user = (User)session.getAttribute("loggedInUser");
+//			User userLoggedIn=userService.findById(user.getId());
+//			Song mySong=songService.getOneSong(id);
+//			songModel.addAttribute("song", mySong);
+//			songModel.addAttribute("userLoggedIn", userLoggedIn);
+//			return "songDetails.jsp";
+//		}
+//		else {
+//			return "redirect:/";
+//		}
+//	}
+	
+	//	Delete Song
+//	@DeleteMapping("/deleteSong/{id}")
+//	public String deleteSong(@PathVariable Long id,
+//			HttpSession session) {
+//		
+//		// Check if user is in session
+//				if(session.getAttribute("loggedInUser")!=null) {
+//					songService.deleteSong(id);
+//					return "redirect:/dashboard";
+//				}
+//				else {
+//					return "redirect:/";
+//				}
+//	}
+	
+	//	Edit Song
+//	@GetMapping("editSong/{id}")
+//	public String editSong(HttpSession session,
+//			@PathVariable Long id,
+//			Model songModel) {
+//		
+//		// Check if user is in session
+//		if(session.getAttribute("loggedInUser")!=null) {
+//			User user = (User)session.getAttribute("loggedInUser");
+////			User userLoggedIn=userService.findById(user.getId());
+//			User userWhoIsCollaborating=userService.findById(user.getId());
+//			Song song=songService.getOneSong(id);
+//			songService.collaborateSong(song, userWhoIsCollaborating);
+//			songModel.addAttribute("userWhoIsCollaborating", userWhoIsCollaborating);
+//			songModel.addAttribute("song", song);
+//			songModel.addAttribute("updateSong", songService.getOneSong(id));
+//			return "editSong.jsp";
+//		}
+//		else {
+//			return "redirect:/";
+//		}
+//	}
+	
+	//	Update Song
+//	@PutMapping("/updateSong/{id}")
+//	public String updateSong(@Valid @ModelAttribute("updateSong") Song editedSong,
+//			BindingResult result,
+//			Model songModel) {
+//		if(result.hasErrors()) {
+//			return "editSong.jsp";
+//		}
+//		else {
+//			songService.updateSong(editedSong);
+//			return "redirect:/songDetails/{id}";
+//		}
+//	}
+    
+}

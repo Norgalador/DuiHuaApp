@@ -1,5 +1,0 @@
-package com.duihua.chat.messagingstompwebsocket;
-
-public class WebSocketConfig {
-
-}

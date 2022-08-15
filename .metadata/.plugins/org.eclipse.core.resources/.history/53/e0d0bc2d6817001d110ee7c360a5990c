@@ -1,0 +1,23 @@
+package com.duihua.chat.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.duihua.chat.repositories.ProfileRepository;
+
+@Service
+public class ProfileService {
+
+	@Autowired
+	private ProfileRepository profileRepo;
+	
+	// Create new profile
+	
+	// Delete profile page
+	
+	// Get one profile page
+	
+	// Update profile page
+	
+	
+}

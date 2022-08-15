@@ -1,7 +1,6 @@
 package com.duihua.chat.models;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,14 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -63,20 +58,13 @@ public class Profile {
         this.updatedAt = new Date();
     }
     
-    // Relationship to other tables in the database
-//    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-//    private List<Song> songs;
-//   
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//    		name = "collaborations",
-//    		joinColumns = @JoinColumn(name = "user_id"),
-//    		inverseJoinColumns = @JoinColumn(name = "song_id")
-//    		)
-//    private List<Song> songCollaborated;
-	
+   // One to one relationship with a single user
+    @OneToOne(fetch = FetchType.LAZY) // optional = false <-- needed?
+    @JoinColumn(name = "user_id") // nullable = false <-- needed?
+    private User user;
+
     //	Getters and setters
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -118,8 +106,13 @@ public class Profile {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 
-    
     
 }

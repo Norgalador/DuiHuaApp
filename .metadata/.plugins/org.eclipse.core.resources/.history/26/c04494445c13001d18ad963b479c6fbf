@@ -1,5 +1,0 @@
-package com.duihua.chat.controllers;
-
-public class KafkaController {
-
-}

@@ -1,0 +1,5 @@
+package com.duihua.chat.security.services;
+
+public class UserDetailsServiceImpl {
+
+}

@@ -1,0 +1,5 @@
+package com.duihua.chat.payload.request;
+
+public class LoginRequest {
+
+}

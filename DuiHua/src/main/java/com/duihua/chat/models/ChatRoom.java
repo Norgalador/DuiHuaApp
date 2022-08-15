@@ -2,7 +2,6 @@ package com.duihua.chat.models;
 
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -60,9 +55,10 @@ public class ChatRoom {
         this.updatedAt = new Date();
     }
     
-    // Relationship to other tables in the database
-//    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-//    private List<Song> songs;
+    // Relationship to user
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 //   
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(
@@ -71,9 +67,8 @@ public class ChatRoom {
 //    		inverseJoinColumns = @JoinColumn(name = "song_id")
 //    		)
 //    private List<Song> songCollaborated;
-    
-    
-    //	Getters and setters
+
+//	Getters and setters
     public Long getId() {
 		return id;
 	}
@@ -110,5 +105,14 @@ public class ChatRoom {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    
+    
 	
 }

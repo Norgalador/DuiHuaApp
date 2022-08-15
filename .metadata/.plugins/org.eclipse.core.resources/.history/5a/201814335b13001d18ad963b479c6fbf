@@ -1,5 +1,0 @@
-package com.duihua.chat.configuration;
-
-public class KafkaConfiguration {
-
-}

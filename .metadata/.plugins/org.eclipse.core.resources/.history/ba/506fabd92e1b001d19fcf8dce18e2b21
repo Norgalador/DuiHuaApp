@@ -1,0 +1,92 @@
+package com.duihua.chat.services;
+
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+
+import com.duihua.chat.models.LoginUser;
+import com.duihua.chat.models.User;
+import com.duihua.chat.repositories.RoleRepository;
+import com.duihua.chat.repositories.UserRepository;
+
+@Service
+public class UserService {
+	@Autowired
+	private UserRepository userRepo;
+	private RoleRepository roleRepo;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	public UserService(UserRepository userRepo, RoleRepository roleRepo, 
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.userRepo = userRepo;
+		this.roleRepo = roleRepo;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+	
+	//	Add user role
+	public void saveWithUserRole(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roleRepo.findByName("ROLE_USER"));
+        userRepo.save(user);
+    }
+	
+	//	Add admin role
+	public void saveUserWithAdminRole(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roleRepo.findByName("ROLE_ADMIN"));
+        userRepo.save(user);
+    } 
+	
+	// Validate user for: duplicate email and password mismatch
+	public void validate(User newUser, BindingResult errors) {
+		if (!newUser.getPassword().equals(newUser.getConfirm())) {
+			errors.rejectValue("password", "Mismatch", "Password does not match!");
+		}
+		if (userRepo.findByEmail(newUser.getEmail()) != null) {
+			errors.rejectValue("email", "unique", "Email is already taken!");
+		}
+	}
+	
+	// Register a user on registration page
+	public User registerUser(User newUser) {
+		String hashedPass = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+		newUser.setPassword(hashedPass);
+		userRepo.save(newUser);
+		return null;
+	}
+	
+	// Check for email in the database
+	public User findByEmail(String email) {
+		return userRepo.findByEmail(email);
+	}
+	
+	// Authenticate the user
+	public boolean authenticateUser(LoginUser newLogin, Errors errors) {
+		User user = userRepo.findByEmail(newLogin.getEmail());
+		// Return false if no user found
+		if (user == null) {
+			errors.rejectValue("email", "missingEmail", "Email not found!");
+			return false;
+		} else {
+			if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+				errors.rejectValue("password", "Matches", "Invalid Password!");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	// Validate the user by database id
+	public User findById(Long id) {
+		return userRepo.findById(id).orElse(null);
+	}
+	
+	//	Validate the user by username
+	 public User findByUsername(String username) {
+	     return userRepo.findByUsername(username);
+	    }
+	
+}

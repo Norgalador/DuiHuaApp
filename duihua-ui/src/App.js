@@ -1,71 +1,41 @@
-import React, { useState } from 'react';
-import SockJsClient from 'react-stomp';
+import React, { useState, useContext } from 'react';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css';
-import Input from './components/Input/Input';
-import LoginForm from './components/LoginForm/LoginForm';
-import Messages from './components/Messages/Messages';
-import chatAPI from './services/chatapi';
-import { randomColor } from './utils/common';
+import { AppContext } from './store/AppContext';
+import Login from './components/Login';
+import Navigation from './components/Navigation';
+import Profile from './components/profiles/Profile';
+import NewProfile from './components/profiles/NewProfile';
 
+function App() {
 
-const SOCKET_URL = 'http://localhost:8080/ws-chat/';
+  const { user, logout } = useContext(AppContext);
 
-const App = () => {
-  const [messages, setMessages] = useState([])
-  const [user, setUser] = useState(null)
-
-  let onConnected = () => {
-    console.log("Connected!!")
-  }
-
-  let onMessageReceived = (msg) => {
-    console.log('New Message Received!!', msg);
-    setMessages(messages.concat(msg));
-  }
-
-  let onSendMessage = (msgText) => {
-    chatAPI.sendMessage(user.username, msgText).then(res => {
-      console.log('Sent', res);
-    }).catch(err => {
-      console.log('Error Occured while sending message to api');
-    })
-  }
-
-  let handleLoginSubmit = (username) => {
-    console.log(username, " Logged in...");
-
-    setUser({
-      username: username,
-      color: randomColor()
-    })
-
-  }
+  const Logout = ( props ) => 
+    <>
+      {logout()}
+    </>
 
   return (
-    <div className="App">
-      {!!user ?
-        (
-          <>
-            <SockJsClient
-              url={SOCKET_URL}
-              topics={['/topic/group']}
-              onConnect={onConnected}
-              onDisconnect={console.log("Disconnected!")}
-              onMessage={msg => onMessageReceived(msg)}
-              debug={false}
-            />
-            <Messages
-              messages={messages}
-              currentUser={user}
-            />
-            <Input onSendMessage={onSendMessage} />
-          </>
-        ) :
-        <LoginForm onSubmit={handleLoginSubmit} />
+    <div className='container-fluid'>
+      {
+        user === undefined ?
+          <></>
+          : user === null ?
+            <Login/>
+            :
+            <BrowserRouter>
+              <Navigation />
+              <Routes>
+                <Route path="/login" element={<Login />}/>
+                <Route path="/logout" element={<Logout />}/>
+                <Route path="/profile/new" element={<NewProfile />}/>
+                <Route path="/profile/:id" element={<Profile />}/>
+              </Routes>
+            </BrowserRouter>
       }
     </div>
-  )
+  );
 }
 
 export default App;
-
