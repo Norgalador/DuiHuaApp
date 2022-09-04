@@ -1,5 +1,0 @@
-package com.duihua.chat.config;
-
-public class WebSecurityConfig {
-
-}

@@ -1,5 +1,0 @@
-package com.duihua.chat.security.jwt;
-
-public class AuthEntryPointJwt {
-
-}

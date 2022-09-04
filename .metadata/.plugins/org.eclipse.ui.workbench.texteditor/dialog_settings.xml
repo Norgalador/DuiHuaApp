@@ -6,8 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Profile"/>
+		<item key="selection" value="jque"/>
 		<list key="findhistory">
+			<item value="jque"/>
+			<item value="boot"/>
+			<item value="stomp"/>
+			<item value="sock"/>
+			<item value="core"/>
 			<item value="topic"/>
 			<item value="Topic"/>
 			<item value="lombok"/>

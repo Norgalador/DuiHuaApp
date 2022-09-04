@@ -71,6 +71,11 @@ a {
     color: #128ff2;
 }
 
+#dash-link {
+	text-align: center;
+	padding: 1rem;
+}
+
 button {
     box-shadow: none;
     border: 1px solid transparent;

@@ -26,10 +26,10 @@
 
 <div id="username-page">
         <div class="username-page-container">
-            <h1 class="title">username</h1>
+            <h1 class="title">Enter a Room Nickname</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                    <input type="text" id="name" placeholder="nickname" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group">
                     <button type="submit" class="accent username-submit">Start Chatting</button>
@@ -41,7 +41,7 @@
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
-                <h2>Chat Room 1</h2>
+                <h2>${chatRoom.roomName}</h2>
             </div>
             <div class="connecting">
                 Connecting...
@@ -58,7 +58,10 @@
                 </div>
             </form>
         </div>
+        <a id="dash-link" href="/home">Return to Dashboard</a>
     </div>
+    
+    
 
 
 <!-- <script
