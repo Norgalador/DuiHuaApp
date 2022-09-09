@@ -39,7 +39,7 @@ public class User {
     private String username;
     
 //    @NotBlank
-    @Email(message="Please enter a valid email.")
+    @Email(message="Please enter a valid email")
     private String email;
     
 //    @NotBlank

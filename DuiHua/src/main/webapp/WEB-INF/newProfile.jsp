@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,40 +18,18 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Caladea&display=swap"
+	rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 <title>Create Your Profile</title>
 </head>
 <body>
+	<t:background />
 	<div class="container">
-		<div class="row">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<a class="navbar-brand" href="#">DuiHua</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarText" aria-controls="navbarText"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<span class="navbar-text"> Discover the world. </span>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarText">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							href="/profileDetails/${currentUser.profile.id}">Profile</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Chat
-								Rooms</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Discover
-								Users</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-						<li class="nav-item"><form class="form-inline"
-								id="logoutForm" method="POST" action="/logout">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input class="form-control mr-sm-2"
-									type="submit" value="Logout" />
-							</form></li>
-					</ul>
-
-				</div>
-			</nav>
-		</div>
+		<t:navbar />
 		<div class="row">
 			<div class="card col-6 offset-3">
 				<div class="card-body">

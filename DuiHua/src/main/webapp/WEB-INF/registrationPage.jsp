@@ -11,13 +11,17 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea&display=swap" rel="stylesheet"> 
+<link href="/css/style.css" rel="stylesheet">
 <title>Registration Page</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="row mx-auto">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded"> <a
 				class="navbar-brand" href="#">Duihua</a> `<span class="navbar-text">
 				Discover the world. </span> </nav>
 		</div>
@@ -55,6 +59,9 @@
 					</p>
 					<input class="btn btn-primary" type="submit" value="Register" />
 				</form:form>
+				<p class="card-body">
+					<a class="card-text" href="/login">Return to login</a>
+				</p>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!-- c:out ; c:forEach etc. -->
+	pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Formatting (dates) -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,19 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Caladea&display=swap"
+	rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 <title>Edit Your Profile</title>
 </head>
 <body>
-<div class="row">
+	<t:background />
+	<div class="container">
+		<t:navbar />
+		<div class="row mt-2">
 			<div class="card col-6 offset-3">
 				<div class="card-body">
 					<h1 class="card-title">Edit your Profile</h1>
@@ -28,20 +38,20 @@
 						modelAttribute="myProfile">
 						<div class="form-floating mb-3">
 							<form:errors class="text-danger mb-5" path="languagesSpoken" />
-							<form:input type="text" class="form-control" path="languagesSpoken"
-								placeholder="I speak..." />
+							<form:input type="text" class="form-control"
+								path="languagesSpoken" placeholder="I speak..." />
 							<form:label path="languagesSpoken">Languages Spoken</form:label>
 						</div>
-							<div class="form-floating mb-3">
+						<div class="form-floating mb-3">
 							<form:errors class="text-danger" path="languagesLearning" />
-							<form:input type="text" class="form-control" path="languagesLearning"
-								placeholder="I am learning..." />
+							<form:input type="text" class="form-control"
+								path="languagesLearning" placeholder="I am learning..." />
 							<form:label path="languagesLearning">Languages Learning</form:label>
 						</div>
 						<div class="form-floating mb-3">
 							<form:errors class="text-danger" path="interests" />
-							<form:textarea type="text" class="form-control"
-								path="interests" placeholder="My interests are..." />
+							<form:textarea type="text" class="form-control" path="interests"
+								placeholder="My interests are..." />
 							<form:label path="interests">My interests are...</form:label>
 						</div>
 						<div class="form-floating mb-3">
@@ -59,6 +69,6 @@
 				</div>
 			</div>
 		</div>
-
+	</div>
 </body>
 </html>

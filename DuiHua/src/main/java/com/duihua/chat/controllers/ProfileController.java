@@ -62,10 +62,12 @@ public class ProfileController {
 			model.addAttribute("currentUser", userService.findByUsername(username));
 			
 			User user= userService.findByUserId(id);
-			model.addAttribute("loggedInUser", user);
-			
-			Profile myProfile = profileService.getOneProfile(id);
-			model.addAttribute("myProfile", myProfile);
+			model.addAttribute("user", user);
+//			User user= userService.findByUserId(id);
+//			model.addAttribute("loggedInUser", user);
+//			
+			Profile oneProfile = profileService.getOneProfile(id);
+			model.addAttribute("oneProfile", oneProfile);
 			return "profile.jsp";
 		}
 		return "redirect:/";

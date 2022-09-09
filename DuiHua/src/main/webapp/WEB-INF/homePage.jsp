@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,51 +12,32 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Caladea&display=swap"
+	rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 <title>Welcome Page</title>
 </head>
-<body>
+<body class="light">
+	<t:background />
 	<div class="container">
-		<div class="row">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a
-				class="navbar-brand" href="#">DuiHua</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarText" aria-controls="navbarText"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<span class="navbar-text"> Discover the world. </span>
-			<div class="collapse navbar-collapse justify-content-end"
-				id="navbarText">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/profileDetails/${currentUser.profile.id}">Profile</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Chat
-							Rooms</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Discover
-							Users</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><form class="form-inline" id="logoutForm" method="POST"
-							action="/logout">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input class="form-control mr-sm-2" type="submit" value="Logout" />
-						</form></li>
-				</ul>
+		<t:navbar />
 
-			</div>
-			</nav>
+		<div class="row d-flex justify-content-between align-items-center">
+			<h2 class="my-2 col-6">
+				Welcome,
+				<c:out value="${currentUser.username}"></c:out>
+			</h2>
+			<a class="btn btn-secondary col-2 fs-6 m-2" href="/newChatRoom">Create
+				Your Own Chat Room</a>
 		</div>
-		<h1>
-			Welcome,
-			<c:out value="${currentUser.username}"></c:out>
-		</h1>
-		<a class="" href="/chat">Test Chat Room</a>
-		<p>
-		<a class="" href="/newChatRoom">Create Your Own Chat Room</a>
-		</p>
-		<div class="row">
+		<div class="row opacity-50">
 
-			<h3>All Chat Rooms</h3>
-			<table class="table">
+			<h3 class="card-header">Active Chat Rooms</h3>
+			<table
+				class="table table-striped table-bordered table-hover table-responsive table-secondary opacity-75">
 				<thead>
 					<tr>
 						<th>Chat Room Name</th>

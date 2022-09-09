@@ -6,7 +6,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- form:form -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- for rendering errors on PUT routes -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +16,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous"> -->
 <link href="/css/main.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>${chatRoom.roomName}</title>
 </head>
 <body>
 	<noscript>
@@ -26,7 +25,7 @@
 
 <div id="username-page">
         <div class="username-page-container">
-            <h1 class="title">Enter a Room Nickname</h1>
+            <h1 class="title">Enter a Nickname:</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
                     <input type="text" id="name" placeholder="nickname" autocomplete="off" class="form-control" />

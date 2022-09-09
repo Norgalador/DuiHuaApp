@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!-- c:out ; c:forEach etc. -->
+	pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Formatting (dates) -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,19 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Caladea&display=swap"
+	rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 <title>Create a Chat Room</title>
 </head>
 <body>
-<div class="row">
+	<t:background />
+	<div class="container">
+		<t:navbar />
+		<div class="row mt-3">
 			<div class="card col-6 offset-3">
 				<div class="card-body">
 					<h1 class="card-title">Create your Chat Room</h1>
@@ -32,7 +42,7 @@
 								placeholder="Enter room name..." />
 							<form:label path="roomName">Chat Room Name</form:label>
 						</div>
-							<div class="form-floating mb-3">
+						<div class="form-floating mb-3">
 							<form:errors class="text-danger" path="language" />
 							<form:input type="text" class="form-control" path="language"
 								placeholder="Language we will practice is..." />
@@ -53,11 +63,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 
 
 </body>

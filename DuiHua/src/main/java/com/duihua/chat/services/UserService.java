@@ -1,5 +1,7 @@
 package com.duihua.chat.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,11 @@ public class UserService {
 //    	Optional<User> optUser = userRepository.findById(id);
 //    	return optUser.get();
     	return userRepository.findById(id).orElse(null);
+    }
+    
+    // get all Users
+    public List<User> allUsers() {
+    	return userRepository.findAll();
     }
     
 }
